@@ -1,0 +1,27 @@
+name: Run test jobs
+on:
+  pull_request:
+  workflow_call:
+
+concurrency:
+  group: test-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  mockstacktest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone this git repository
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
+
+      - name: Install docker-compose
+        run: make docker-compose/install
+
+      - name: Start the mock AWS stack
+        run: make mockstack/up
+
+      - name: Apply Terraform test configs in mock AWS stack
+        run: make mockstack/pytest
+
+      - name: Cleanup the mock AWS stack
+        run: make mockstack/clean
