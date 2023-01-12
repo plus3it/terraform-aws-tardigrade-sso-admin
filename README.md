@@ -1,8 +1,8 @@
 # terraform-aws-tardigrade-sso-admin
 Terraform module to manage AWS SSO Admin resources, including:
 
-* [AWS SSO Account Assignments](modules/account-assignments)
-* [AWS SSO Permission Sets](modules/permission-sets)
+* [AWS SSO Account Assignment](modules/account-assignment)
+* [AWS SSO Permission Set](modules/permission-set)
 
 <!-- BEGIN TFDOCS -->
 ## Requirements
