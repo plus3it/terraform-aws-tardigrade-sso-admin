@@ -2,7 +2,7 @@ resource "aws_ssoadmin_account_assignment" "this" {
   instance_arn       = local.sso_instance_arn
   permission_set_arn = var.account_assignment.permission_set_arn != null ? var.account_assignment.permission_set_arn : data.aws_ssoadmin_permission_set.this[0].arn
 
-  principal_id   = var.account_assignment.principal_type == "GROUP" ? data.aws_identitystore_group.this.alternate_identifier : data.aws_identitystore_user.this.alternate_identifier
+  principal_id   = var.account_assignment.principal_type == "GROUP" ? data.aws_identitystore_group.this[0].id : data.aws_identitystore_user.this[0].id
   principal_type = var.account_assignment.principal_type
 
   target_id   = var.account_assignment.target_id
@@ -54,6 +54,7 @@ data "aws_ssoadmin_instances" "this" {
 
 locals {
   # Reduce api calls
-  identity_store_id = var.account_assignment.identity_store_id != null ? var.account_assignment.identity_store_id : data.aws_ssoadmin_instances.this.identity_store_ids[0]
-  sso_instance_arn  = var.account_assignment.instance_arn != null ? var.account_assignment.instance_arn : data.aws_ssoadmin_instances.this.arns[0]
+  identity_store_id = var.account_assignment.identity_store_id != null ? var.account_assignment.identity_store_id : data.aws_ssoadmin_instances.this[0].identity_store_ids[0]
+  sso_instance_arn  = var.account_assignment.instance_arn != null ? var.account_assignment.instance_arn : data.aws_ssoadmin_instances.this[0].arns[0]
 }
+
