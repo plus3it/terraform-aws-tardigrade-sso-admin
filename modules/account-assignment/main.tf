@@ -32,8 +32,10 @@ data "aws_identitystore_group" "this" {
   identity_store_id = local.identity_store_id
 
   alternate_identifier {
-    attribute_name  = "DisplayName"
-    attribute_value = var.account_assignment.principal_name
+    unique_attribute {
+      attribute_path  = "DisplayName"
+      attribute_value = var.account_assignment.principal_name
+    }
   }
 }
 
@@ -43,8 +45,10 @@ data "aws_identitystore_user" "this" {
   identity_store_id = local.identity_store_id
 
   alternate_identifier {
-    attribute_name  = "UserName"
-    attribute_value = var.account_assignment.principal_name
+    unique_attribute {
+      attribute_path  = "UserName"
+      attribute_value = var.account_assignment.principal_name
+    }
   }
 }
 
