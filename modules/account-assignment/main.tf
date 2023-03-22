@@ -31,9 +31,11 @@ data "aws_identitystore_group" "this" {
 
   identity_store_id = local.identity_store_id
 
-  filter {
-    attribute_path  = "DisplayName"
-    attribute_value = var.account_assignment.principal_name
+  alternate_identifier {
+    unique_attribute {
+      attribute_path  = "DisplayName"
+      attribute_value = var.account_assignment.principal_name
+    }
   }
 }
 
@@ -42,9 +44,11 @@ data "aws_identitystore_user" "this" {
 
   identity_store_id = local.identity_store_id
 
-  filter {
-    attribute_path  = "UserName"
-    attribute_value = var.account_assignment.principal_name
+  alternate_identifier {
+    unique_attribute {
+      attribute_path  = "UserName"
+      attribute_value = var.account_assignment.principal_name
+    }
   }
 }
 
@@ -57,3 +61,4 @@ locals {
   identity_store_id = var.account_assignment.identity_store_id != null ? var.account_assignment.identity_store_id : data.aws_ssoadmin_instances.this[0].identity_store_ids[0]
   sso_instance_arn  = var.account_assignment.instance_arn != null ? var.account_assignment.instance_arn : data.aws_ssoadmin_instances.this[0].arns[0]
 }
+
