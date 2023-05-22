@@ -3,11 +3,11 @@ module "permission_sets" {
   for_each = { for permission_set in var.sso_admin.permission_sets : permission_set.name => permission_set }
 
   permission_set = merge(
+    each.value,
     {
       instance_arn = local.sso_instance_arn
       partition    = local.partition
     },
-    each.value
   )
 }
 
@@ -16,15 +16,29 @@ module "account_assignments" {
   for_each = { for account_assignment in var.sso_admin.account_assignments : account_assignment.name => account_assignment }
 
   account_assignment = merge(
+    each.value,
     {
       identity_store_id = local.identity_store_id
       instance_arn      = local.sso_instance_arn
-      permission_set_arn = try(
-        module.permission_sets[each.value.permission_set_name].permission_set.arn,
-        null,
-      )
+
+      permission_set_arn = (
+        try(each.value.permission_set_arn, null) != null ||
+        contains(
+          var.sso_admin.permission_sets[*].name,
+          try(each.value.permission_set_name, null)
+        )
+      ) ? module.permission_sets[each.value.permission_set_name].permission_set.arn : null
+
+      # Null `permission_set_name` if `permission_set_arn` is provided or can
+      # be looked up from the permission-set module
+      permission_set_name = (
+        try(each.value.permission_set_arn, null) != null ||
+        contains(
+          var.sso_admin.permission_sets[*].name,
+          try(each.value.permission_set_name, null)
+        )
+      ) ? null : each.value.permission_set_name
     },
-    each.value
   )
 }
 

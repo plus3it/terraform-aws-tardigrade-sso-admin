@@ -14,16 +14,6 @@ data "aws_ssoadmin_permission_set" "this" {
 
   name         = var.account_assignment.permission_set_name
   instance_arn = local.sso_instance_arn
-
-  depends_on = [
-    # When the permission set is managed in the same tfstate, it will not exist
-    # during the plan phase until after the first apply. This depends_on forces
-    # terraform to wait to evaluate the inputs until after the permission set is
-    # created, even on the first apply, ensuring it will exist when this data source
-    # is evaluated. See `tests/test-account-assignment` for the setup that will
-    # trigger the error condition, if this is removed.
-    var.account_assignment
-  ]
 }
 
 data "aws_identitystore_group" "this" {
