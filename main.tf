@@ -18,8 +18,9 @@ module "account_assignments" {
   account_assignment = merge(
     each.value,
     {
-      identity_store_id = local.identity_store_id
-      instance_arn      = local.sso_instance_arn
+      identity_store_id     = local.identity_store_id
+      instance_arn          = local.sso_instance_arn
+      organization_accounts = local.organization_accounts
 
       permission_set_arn = (
         try(each.value.permission_set_arn, null) != null ||
@@ -42,11 +43,13 @@ module "account_assignments" {
   )
 }
 
-data "aws_ssoadmin_instances" "this" {}
+data "aws_organizations_organization" "this" {}
 data "aws_partition" "this" {}
+data "aws_ssoadmin_instances" "this" {}
 
 locals {
-  identity_store_id = data.aws_ssoadmin_instances.this.identity_store_ids[0]
-  sso_instance_arn  = data.aws_ssoadmin_instances.this.arns[0]
-  partition         = data.aws_partition.this.partition
+  identity_store_id     = data.aws_ssoadmin_instances.this.identity_store_ids[0]
+  organization_accounts = data.aws_organizations_organization.this.accounts[*].id
+  partition             = data.aws_partition.this.partition
+  sso_instance_arn      = data.aws_ssoadmin_instances.this.arns[0]
 }

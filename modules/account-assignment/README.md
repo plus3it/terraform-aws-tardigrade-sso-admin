@@ -22,6 +22,7 @@ Module for managing an AWS SSO Account Assignment
 |------|------|
 | [aws_identitystore_group.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/identitystore_group) | data source |
 | [aws_identitystore_user.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/identitystore_user) | data source |
+| [aws_organizations_organization.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/organizations_organization) | data source |
 | [aws_ssoadmin_instances.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ssoadmin_instances) | data source |
 | [aws_ssoadmin_permission_set.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ssoadmin_permission_set) | data source |
 
@@ -29,7 +30,7 @@ Module for managing an AWS SSO Account Assignment
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_account_assignment"></a> [account\_assignment](#input\_account\_assignment) | Object of inputs for managing an AWS SSO Account Assignment | <pre>object({<br>    identity_store_id   = optional(string)<br>    principal_name      = string<br>    principal_type      = optional(string, "GROUP")<br>    permission_set_arn  = optional(string)<br>    permission_set_name = optional(string)<br>    instance_arn        = optional(string)<br>    target_id           = string<br>  })</pre> | n/a | yes |
+| <a name="input_account_assignment"></a> [account\_assignment](#input\_account\_assignment) | Object of inputs for managing an AWS SSO Account Assignment | <pre>object({<br>    identity_store_id     = optional(string)<br>    instance_arn          = optional(string)<br>    principal_name        = string<br>    principal_type        = optional(string, "GROUP")<br>    permission_set_arn    = optional(string)<br>    permission_set_name   = optional(string)<br>    organization_accounts = optional(list(string))<br>    target_id             = string<br>  })</pre> | n/a | yes |
 
 ## Outputs
 

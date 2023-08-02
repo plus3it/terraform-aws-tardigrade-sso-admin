@@ -3,13 +3,14 @@ variable "account_assignment" {
   nullable    = false
 
   type = object({
-    identity_store_id   = optional(string)
-    principal_name      = string
-    principal_type      = optional(string, "GROUP")
-    permission_set_arn  = optional(string)
-    permission_set_name = optional(string)
-    instance_arn        = optional(string)
-    target_id           = string
+    identity_store_id     = optional(string)
+    instance_arn          = optional(string)
+    principal_name        = string
+    principal_type        = optional(string, "GROUP")
+    permission_set_arn    = optional(string)
+    permission_set_name   = optional(string)
+    organization_accounts = optional(list(string))
+    target_id             = string
   })
 
   validation {
