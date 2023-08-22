@@ -30,7 +30,8 @@ jobs:
         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9
         with:
           fetch-depth: 0
-      - run: git fetch --tags --force origin # WA: https://github.com/actions/checkout/issues/882
+      - run: git fetch --tags --force origin
+      # WA: https://github.com/actions/checkout/issues/882
 
       - name: Test release condition
         id: release
@@ -50,7 +51,7 @@ jobs:
         uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844
         with:
           name: ${{ steps.release.outputs.version }}
-          tag_name:  ${{ steps.release.outputs.version }}
+          tag_name: ${{ steps.release.outputs.version }}
           generate_release_notes: true
           target_commitish: ${{ env.GITHUB_REF }}
           token: ${{ secrets.GH_RELEASES_TOKEN }}
