@@ -24,4 +24,18 @@ variable "permission_set" {
     ])
     error_message = "For each managed policy attachment, `policy_type` must be one of: \"AWS\", \"CUSTOMER\"."
   }
+
+  validation {
+    condition     = length(var.permission_set.managed_policy_attachments) <= 20
+    error_message = "Number of managed policies exceeds max limit of 20."
+  }
+
+  validation {
+    condition = (
+      var.permission_set.inline_policy != null ?
+      length(jsonencode(jsondecode(var.permission_set.inline_policy))) <= 10240 :
+      true
+    )
+    error_message = "Length of inline policy exceeds max limit of 10,240 characters."
+  }
 }
