@@ -48,7 +48,7 @@ jobs:
 
       - name: Create release
         if: steps.release.outputs.condition == 'true'
-        uses: softprops/action-gh-release@d99959edae48b5ffffd7b00da66dcdb0a33a52ee
+        uses: softprops/action-gh-release@9d7c94cfd0a1f3ed45544c887983e9fa900f0564
         with:
           name: ${{ steps.release.outputs.version }}
           tag_name: ${{ steps.release.outputs.version }}
