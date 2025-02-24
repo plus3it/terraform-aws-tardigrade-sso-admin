@@ -27,7 +27,7 @@ Module for managing an AWS SSO Permission Set
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_permission_set"></a> [permission\_set](#input\_permission\_set) | Object of inputs for managing an AWS SSO Permission Set | <pre>object({<br>    name             = string<br>    description      = optional(string)<br>    inline_policy    = optional(string)<br>    instance_arn     = optional(string)<br>    relay_state      = optional(string)<br>    partition        = optional(string)<br>    session_duration = optional(string, "PT1H")<br>    tags             = optional(map(string))<br>    managed_policy_attachments = optional(list(object({<br>      policy_name = string<br>      policy_path = optional(string, "/")<br>      policy_type = optional(string, "AWS")<br>    })), [])<br>  })</pre> | n/a | yes |
+| <a name="input_permission_set"></a> [permission\_set](#input\_permission\_set) | Object of inputs for managing an AWS SSO Permission Set | <pre>object({<br/>    name             = string<br/>    description      = optional(string)<br/>    inline_policy    = optional(string)<br/>    instance_arn     = optional(string)<br/>    relay_state      = optional(string)<br/>    partition        = optional(string)<br/>    session_duration = optional(string, "PT1H")<br/>    tags             = optional(map(string))<br/>    managed_policy_attachments = optional(list(object({<br/>      policy_name = string<br/>      policy_path = optional(string, "/")<br/>      policy_type = optional(string, "AWS")<br/>    })), [])<br/>  })</pre> | n/a | yes |
 
 ## Outputs
 

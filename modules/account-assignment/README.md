@@ -30,7 +30,7 @@ Module for managing an AWS SSO Account Assignment
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_account_assignment"></a> [account\_assignment](#input\_account\_assignment) | Object of inputs for managing an AWS SSO Account Assignment | <pre>object({<br>    identity_store_id     = optional(string)<br>    instance_arn          = optional(string)<br>    principal_name        = string<br>    principal_type        = optional(string, "GROUP")<br>    permission_set_arn    = optional(string)<br>    permission_set_name   = optional(string)<br>    organization_accounts = optional(list(string))<br>    target_id             = string<br>  })</pre> | n/a | yes |
+| <a name="input_account_assignment"></a> [account\_assignment](#input\_account\_assignment) | Object of inputs for managing an AWS SSO Account Assignment | <pre>object({<br/>    identity_store_id     = optional(string)<br/>    instance_arn          = optional(string)<br/>    principal_id          = optional(string)<br/>    principal_name        = optional(string)<br/>    principal_type        = optional(string, "GROUP")<br/>    permission_set_arn    = optional(string)<br/>    permission_set_name   = optional(string)<br/>    organization_accounts = optional(list(string))<br/>    target_id             = string<br/>  })</pre> | n/a | yes |
 
 ## Outputs
 
