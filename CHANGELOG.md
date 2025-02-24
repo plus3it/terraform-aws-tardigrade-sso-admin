@@ -4,9 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
-### [2.0.3](https://github.com/plus3it/terraform-aws-tardigrade-sso-admin/releases/tag/2.0.3)
+### [2.1.0](https://github.com/plus3it/terraform-aws-tardigrade-sso-admin/releases/tag/2.1.0)
 
-**Commit Delta**: n/a
+**Released**: 2025.02.24
+
+**Summary**:
+
+* Accepts principal_id to reduce api calls by avoiding data lookup by principal_name
+
+### [2.0.3](https://github.com/plus3it/terraform-aws-tardigrade-sso-admin/releases/tag/2.0.3)
 
 **Released**: 2023.08.30
 
@@ -16,8 +22,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ### [2.0.2](https://github.com/plus3it/terraform-aws-tardigrade-sso-admin/releases/tag/2.0.2)
 
-**Commit Delta**: n/a
-
 **Released**: 2023.08.02
 
 **Summary**:
@@ -26,8 +30,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
   phase, before attempting to create the account assignment
 
 ### [2.0.1](https://github.com/plus3it/terraform-aws-tardigrade-sso-admin/releases/tag/2.0.1)
-
-**Commit Delta**: n/a
 
 **Released**: 2023.05.22
 
@@ -39,8 +41,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ### 2.0.0
 
-**Commit Delta**: n/a
-
 **Released**: 2023.03.21
 
 **Summary**:
@@ -49,8 +49,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 * Replaces "filter" with "alternate_identifier"
 
 ### 1.0.0
-
-**Commit Delta**: n/a
 
 **Released**: 2023.01.11
 
