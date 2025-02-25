@@ -30,7 +30,7 @@ Terraform module to manage AWS SSO Admin resources, including:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_sso_admin"></a> [sso\_admin](#input\_sso\_admin) | Object of inputs for SSO Admin resources | <pre>object({<br>    account_assignments = optional(any, [])<br>    permission_sets     = optional(any, [])<br>  })</pre> | `{}` | no |
+| <a name="input_sso_admin"></a> [sso\_admin](#input\_sso\_admin) | Object of inputs for SSO Admin resources | <pre>object({<br/>    account_assignments = optional(any, [])<br/>    permission_sets     = optional(any, [])<br/>  })</pre> | `{}` | no |
 
 ## Outputs
 

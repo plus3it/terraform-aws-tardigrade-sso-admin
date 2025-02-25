@@ -2,7 +2,7 @@ resource "aws_ssoadmin_account_assignment" "this" {
   instance_arn       = local.sso_instance_arn
   permission_set_arn = var.account_assignment.permission_set_arn != null ? var.account_assignment.permission_set_arn : data.aws_ssoadmin_permission_set.this[0].arn
 
-  principal_id   = var.account_assignment.principal_type == "GROUP" ? data.aws_identitystore_group.this[0].id : data.aws_identitystore_user.this[0].id
+  principal_id   = var.account_assignment.principal_id != null ? var.account_assignment.principal_id : (var.account_assignment.principal_type == "GROUP" ? data.aws_identitystore_group.this[0].id : data.aws_identitystore_user.this[0].id)
   principal_type = var.account_assignment.principal_type
 
   target_id   = var.account_assignment.target_id
@@ -24,7 +24,7 @@ data "aws_ssoadmin_permission_set" "this" {
 }
 
 data "aws_identitystore_group" "this" {
-  count = var.account_assignment.principal_type == "GROUP" ? 1 : 0
+  count = var.account_assignment.principal_name != null && var.account_assignment.principal_type == "GROUP" ? 1 : 0
 
   identity_store_id = local.identity_store_id
 
@@ -37,7 +37,7 @@ data "aws_identitystore_group" "this" {
 }
 
 data "aws_identitystore_user" "this" {
-  count = var.account_assignment.principal_type == "USER" ? 1 : 0
+  count = var.account_assignment.principal_name != null && var.account_assignment.principal_type == "USER" ? 1 : 0
 
   identity_store_id = local.identity_store_id
 
@@ -63,4 +63,3 @@ locals {
   organization_accounts = var.account_assignment.organization_accounts != null ? var.account_assignment.organization_accounts : data.aws_organizations_organization.this[0].accounts[*].id
   sso_instance_arn      = var.account_assignment.instance_arn != null ? var.account_assignment.instance_arn : data.aws_ssoadmin_instances.this[0].arns[0]
 }
-

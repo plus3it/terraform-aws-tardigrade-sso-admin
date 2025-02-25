@@ -5,7 +5,8 @@ variable "account_assignment" {
   type = object({
     identity_store_id     = optional(string)
     instance_arn          = optional(string)
-    principal_name        = string
+    principal_id          = optional(string)
+    principal_name        = optional(string)
     principal_type        = optional(string, "GROUP")
     permission_set_arn    = optional(string)
     permission_set_name   = optional(string)
