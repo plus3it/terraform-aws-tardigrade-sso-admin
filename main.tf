@@ -22,8 +22,7 @@ module "account_assignments" {
       instance_arn          = local.sso_instance_arn
       organization_accounts = local.organization_accounts
 
-      permission_set_arn = (
-        try(each.value.permission_set_arn, null) != null ||
+      permission_set_arn = try(each.value.permission_set_arn, null) != null ? each.value.permission_set_arn : (
         contains(
           var.sso_admin.permission_sets[*].name,
           try(each.value.permission_set_name, null)
@@ -32,7 +31,7 @@ module "account_assignments" {
 
       # Null `permission_set_name` if `permission_set_arn` is provided or can
       # be looked up from the permission-set module
-      permission_set_name = (
+      permission_set_name = try(each.value.permission_set_name, null) == null ? null : (
         try(each.value.permission_set_arn, null) != null ||
         contains(
           var.sso_admin.permission_sets[*].name,
