@@ -24,4 +24,4 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
       - name: Check workflow files
-        uses: reviewdog/action-actionlint@83e4ed25b168066ad8f62f5afbb29ebd8641d982
+        uses: reviewdog/action-actionlint@e58ee9d111489c31395fbe4857b0be6e7635dbda
