@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+### [2.2.1](https://github.com/plus3it/terraform-aws-tardigrade-sso-admin/releases/tag/2.2.1)
+
+**Released**: 2026.03.16
+
+**Summary**:
+
+* Fixes dynamic block reference to exclusive customer managed policy attachments
+
 ### [2.2.0](https://github.com/plus3it/terraform-aws-tardigrade-sso-admin/releases/tag/2.2.0)
 
 **Released**: 2026.02.17
