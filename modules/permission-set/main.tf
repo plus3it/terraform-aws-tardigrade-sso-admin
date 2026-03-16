@@ -54,8 +54,8 @@ resource "aws_ssoadmin_customer_managed_policy_attachments_exclusive" "this" {
     for_each = aws_ssoadmin_customer_managed_policy_attachment.this
 
     content {
-      name = one(each.value.customer_managed_policy_reference).name
-      path = one(each.value.customer_managed_policy_reference).path
+      name = one(customer_managed_policy_reference.value.customer_managed_policy_reference).name
+      path = one(customer_managed_policy_reference.value.customer_managed_policy_reference).path
     }
   }
 }
